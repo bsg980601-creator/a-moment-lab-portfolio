@@ -253,6 +253,15 @@
       color: var(--gold); text-transform: uppercase;
     }
 
+    /* ════ RECENT WORKS (2026-11 추가) ════ */
+    .wgrid { display:grid; grid-template-columns:1fr 1fr; gap:4px; padding:0 4px; }
+    .wgrid .wk-feature { grid-column:1 / -1; }
+    .wk video { width:100%; aspect-ratio:16/9; display:block; background:#000; object-fit:contain; }
+    .wk .video-caption { flex-direction:column; align-items:flex-start; gap:6px; }
+    .wk .video-caption-title { word-break:keep-all; text-wrap:balance; }
+    .wk-sub { font-size:12px; color:var(--muted); letter-spacing:.04em; }
+    @media (max-width: 768px) { .wgrid { grid-template-columns:1fr; } }
+
     /* ════ SECTION DIVIDER ════ */
     .sdiv {
       height: 96px; display: flex;
@@ -385,6 +394,7 @@
   <ul class="nav-menu">
     <li><a href="#performance">전통공연</a></li>
     <li><a href="#event">행사촬영</a></li>
+    <li><a href="#works">영상</a></li>
     <li><a href="#contact">문의</a></li>
   </ul>
   <div class="burger" id="burger" onclick="toggleBurger()">
@@ -396,6 +406,7 @@
 <div class="mobile-drawer" id="drawer">
   <a href="#performance" onclick="toggleBurger()">전통공연</a>
   <a href="#event"       onclick="toggleBurger()">행사촬영</a>
+  <a href="#works"       onclick="toggleBurger()">영상</a>
   <a href="#contact"     onclick="toggleBurger()">문의</a>
 </div>
 
@@ -518,6 +529,65 @@
   </div>
 </section>
 
+<div class="sdiv"></div>
+
+<!-- ═══════════════════════
+     최근 작업 영상 (2026-11 추가)
+════════════════════════ -->
+<section class="gs" id="works">
+  <div class="gs-head">
+    <div class="gs-num">03</div>
+    <div class="gs-hr"></div>
+    <div class="gs-info">
+      <p class="gs-cat">Recent Works · Film</p>
+      <h2 class="gs-title">최근 작업</h2>
+      <p class="gs-title-en">Concert &amp; Event Films, 2026</p>
+    </div>
+  </div>
+  <div class="wgrid">
+    <div class="wk wk-feature rv">
+      <video src="works/lee_bonyeon.mp4" poster="works/lee_bonyeon.jpg" controls playsinline preload="none"></video>
+      <div class="video-caption">
+        <span class="video-caption-meta">Concert Highlight</span>
+        <span class="video-caption-title">이충현 독주회 「본연 : 주체」</span>
+        <span class="wk-sub">하이라이트 1분 · 인트로·곡카드 모션그래픽</span>
+      </div>
+    </div>
+    <div class="wk rv">
+      <video src="works/sung_jukpungryu.mp4" poster="works/sung_jukpungryu.jpg" controls playsinline preload="none"></video>
+      <div class="video-caption">
+        <span class="video-caption-meta">Live Concert Film</span>
+        <span class="video-caption-title">성휘경 대금 연주회 「竹風流 숨, 결」</span>
+        <span class="wk-sub">실황 영상 발췌 · 멀티캠 촬영·편집</span>
+      </div>
+    </div>
+    <div class="wk rv">
+      <video src="works/insa_promo.mp4" poster="works/insa_promo.jpg" controls playsinline preload="none"></video>
+      <div class="video-caption">
+        <span class="video-caption-meta">Promotion Film</span>
+        <span class="video-caption-title">2026 인사동 엔틱&amp;아트페어</span>
+        <span class="wk-sub">통합 홍보영상</span>
+      </div>
+    </div>
+    <div class="wk rv">
+      <video src="works/insa_ep1.mp4" poster="works/insa_ep1.jpg" controls playsinline preload="none"></video>
+      <div class="video-caption">
+        <span class="video-caption-meta">Opening Ceremony</span>
+        <span class="video-caption-title">2026 인사동 엔틱&amp;아트페어</span>
+        <span class="wk-sub">서예 퍼포먼스 · 개막식</span>
+      </div>
+    </div>
+    <div class="wk rv">
+      <video src="works/insa_sketch.mp4" poster="works/insa_sketch.jpg" controls playsinline preload="none"></video>
+      <div class="video-caption">
+        <span class="video-caption-meta">Sketch Film</span>
+        <span class="video-caption-title">2026 인사동 엔틱&amp;아트페어</span>
+        <span class="wk-sub">행사 스케치 영상</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <p class="tag rv">Contact</p>
@@ -624,6 +694,11 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft')   lbStep(-1);
   if (e.key === 'ArrowRight')  lbStep(1);
 });
+
+/* 영상: 하나 재생하면 나머지 정지 */
+document.querySelectorAll('.wk video').forEach(v => v.addEventListener('play', () => {
+  document.querySelectorAll('.wk video').forEach(o => { if (o !== v) o.pause(); });
+}));
 
 /* swipe */
 let sx = 0;
